@@ -35,7 +35,7 @@ public class NoticeService implements INoticeService {
 
         // 엔티티의 값들을 DTO에 맞게 넣어주기
         List<NoticeDTO> nList = new ObjectMapper().convertValue(rList,
-                new TypeReference<>() {
+                new TypeReference<List<NoticeDTO>>() {
                 });
 
         log.info(this.getClass().getName() + ".getNoticeList End!");
@@ -96,7 +96,7 @@ public class NoticeService implements INoticeService {
                 .readCnt(rEntity.getReadCnt())
                 .build();
 
-        // 데이터 수정하기
+        // 데이터 수정하기 (DB 반영)
         noticeRepository.save(pEntity);
 
         log.info(this.getClass().getName() + ".updateNoticeInfo End!");

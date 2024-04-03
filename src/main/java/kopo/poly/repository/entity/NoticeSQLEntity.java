@@ -12,9 +12,9 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert // 값이 NULL이 아닌것만 INSERT함
 @DynamicUpdate // 값이 NULL이 아닌것만 UPDATE함
 @Builder
-@Cacheable
+//@Cacheable
 @Entity
-public class NoticeEntity {
+public class NoticeSQLEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Autoincrement와 같음
@@ -52,4 +52,6 @@ public class NoticeEntity {
     @Column(name = "chg_dt")
     private String chgDt;
 
+    @Column(name = "user_name") // NativeQuery 결과를 저장하기 위한 변수
+    private String userName;
 }
