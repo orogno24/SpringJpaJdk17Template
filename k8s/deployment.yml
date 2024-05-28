@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: my-notice
-          image: i
+          image: docker.io/orogno24/notice-jpa-java17
           imagePullPolicy: IfNotPresent
           resources:
             requests:
@@ -30,5 +30,5 @@ spec:
               memory: "1Gi"
               cpu: "500m"
           ports:
-            - containerPort: 11000
+            - containerPort: 10000
       restartPolicy: Always
