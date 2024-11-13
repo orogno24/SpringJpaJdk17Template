@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: my-notice-svc
-  namespace: notice
+  namespace: poly
   labels:
     app: my-notice
 spec:
@@ -11,8 +11,8 @@ spec:
     tier: backend
   ports:
     - protocol: TCP
-      port: 10000
-      targetPort: 10000
+      port: 11000
+      targetPort: 11000
       nodePort: 31100
   type: NodePort
 

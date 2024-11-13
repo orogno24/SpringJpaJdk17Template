@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: my-notice-dep
-  namespace: notice
+  namespace: poly
   labels:
     app: my-notice
 spec:
@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: my-notice
-          image: docker.io/orogno24/notice-jpa-java17
+          image: docker.io/orogno24/notice
           imagePullPolicy: IfNotPresent
           resources:
             requests:
@@ -30,5 +30,26 @@ spec:
               memory: "1Gi"
               cpu: "500m"
           ports:
-            - containerPort: 10000
+            - containerPort: 11000
+          env:
+            - name: MARIADB_IP
+              valueFrom:
+                configMapKeyRef:
+                  name: poly-config
+                  key: mariadb-ip
+            - name: MARIADB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: poly-config
+                  key: mariadb-port
+            - name: MARIADB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: poly-secret
+                  key: username
+            - name: MARIADB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: poly-secret
+                  key: password
       restartPolicy: Always
